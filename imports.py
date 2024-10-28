@@ -7,4 +7,3 @@ import pycountry
 import streamlit as st
 
 from data_loader import *
-from data_cleaning import *

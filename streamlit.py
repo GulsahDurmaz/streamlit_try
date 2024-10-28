@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import os
 import pycountry
 import streamlit as st
+import gdown
 
 from data_loader import *
 
@@ -20,6 +21,18 @@ def main():
 if __name__ == "__main__":
     main()
 
-biden_df = load_data(r"csv/joebiden.csv")
+# File ID from the shareable link
+# Correct URL for gdown
+file_id = '1UWrfKj-YtbFwsixUs-SG4U35QncgpONI'
+url = f'https://drive.google.com/uc?id={file_id}'  # Use the direct download link
+
+
+# Download the CSV file
+output = 'joebiden.csv'
+gdown.download(url, output, quiet=False)
+
+# Load the CSV into pandas
+biden_df = pd.read_csv(output, encoding='utf-8', lineterminator='\n')
 
 st.dataframe(biden_df.head(3))
+
