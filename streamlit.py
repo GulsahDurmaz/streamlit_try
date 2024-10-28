@@ -1,4 +1,4 @@
-import streamlit as st
+from ..imports import *
 
 # Configure the Streamlit page
 st.set_page_config(page_title="2020 US Presidential Election Dashboard",
@@ -12,3 +12,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+biden_df = load_data(r"csv/joebiden.csv")
+
+st.dataframe(biden_df.head(3))
