@@ -9,5 +9,5 @@ import streamlit as st
 # import pycountry
 # import plost
 
-
 from data_loader import *
+from eda import *

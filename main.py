@@ -54,3 +54,7 @@ if st.sidebar.button("Sentimental Data Analysis"):
 
 if st.sidebar.button("Dataset"):
     st.session_state.page = 'Dataset'
+
+# Display content based on the active page
+if st.session_state.page == 'Exploratory Data Analysis':
+    eda.run_exploratory_data_analysis(trump_df, biden_df)  # Call the function from eda.py
