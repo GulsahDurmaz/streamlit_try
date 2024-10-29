@@ -1,5 +1,6 @@
 # streamlit.py
 from imports import *
+import eda
 
 # Configure the Streamlit page
 st.set_page_config(page_title="2020 US Presidential Election Dashboard",
@@ -12,28 +13,14 @@ with open('style.css') as f:
 
 st.sidebar.header('US Presidential Election Dashboard `2020`')
 
-# Download the donaldtrump.csv file
-file_id_trump = '1Q5XKzaaHTXrXIT_W2kWyBkTSmWg4uANU'
-url = f'https://drive.google.com/uc?id={file_id_trump}' 
+# Load the country_percentage_analysis.csv into pandas
+country_percentage_analysis_df = pd.read_csv("country_percentage_analysis.csv", encoding='utf-8', lineterminator='\n')
+trump_hourly_df = pd.read_csv("trump_hourly.csv", encoding='utf-8', lineterminator='\n')
+biden_hourly_df = pd.read_csv("biden_hourly.csv", encoding='utf-8', lineterminator='\n')
 
-output_trump = 'donaldtrump.csv'
-gdown.download(url, output_trump, quiet=False)
-
-# Load the donaldtrump.csv into pandas
-trump_df = pd.read_csv(output_trump, encoding='utf-8', lineterminator='\n')
-
-# Download the joebiden.csv file
-file_id_biden = '1UWrfKj-YtbFwsixUs-SG4U35QncgpONI'
-url = f'https://drive.google.com/uc?id={file_id_biden}'  # Use the direct download link
-
-output = 'joebiden.csv'
-gdown.download(url, output, quiet=False)
-
-# Load the joebiden.csv into pandas
-biden_df = pd.read_csv(output, encoding='utf-8', lineterminator='\n')
-
-st.dataframe(trump_df.head(3))
-st.dataframe(biden_df.head(3))
+# Tarih sütununu datetime formatına dönüştür
+trump_hourly_df['created_at'] = pd.to_datetime(trump_hourly_df['created_at'], errors='coerce')
+biden_hourly_df['created_at'] = pd.to_datetime(biden_hourly_df['created_at'], errors='coerce')
 
 # Initialize page state
 if 'page' not in st.session_state:
@@ -57,4 +44,4 @@ if st.sidebar.button("Dataset"):
 
 # Display content based on the active page
 if st.session_state.page == 'Exploratory Data Analysis':
-    eda.run_exploratory_data_analysis(trump_df, biden_df)  # Call the function from eda.py
+    eda.run_exploratory_data_analysis(trump_hourly_df, biden_hourly_df, country_percentage_analysis_df)  # Call the function from eda.py

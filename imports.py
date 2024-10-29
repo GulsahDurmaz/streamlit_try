@@ -1,13 +1,13 @@
 # imports.py
 
 import pandas as pd
-import gdown
 import streamlit as st
-
-# import matplotlib.pyplot as plt
-# import plotly.express as px
+import plotly.express as px
+import seaborn as sns
+import matplotlib.pyplot as plt
 # import pycountry
 # import plost
+# import gdown
 
 from data_loader import *
-from eda import *
+

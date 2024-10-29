@@ -1,9 +1,9 @@
 pandas
-gdown
+# gdown
 streamlit
 # numpy
-# matplotlib
-# seaborn
-# plotly
+matplotlib
+seaborn
+plotly
 # pycountry
 # plost
