@@ -66,14 +66,14 @@ if st.sidebar.button("Dataset"):
 # if st.session_state.page == 'Exploratory Data Analysis':
 #     eda.run_exploratory_data_analysis(country_percentage_analysis_df)  # Call the function from eda.py
 
-elif st.session_state.page == 'World Popularity Analysis':
+if st.session_state.page == 'World Popularity Analysis':
     world_popularity_analysis.run_world_popularity_analysis(country_percentage_analysis_df)  # Call the function from world_popularity_analysis.py
 
 elif st.session_state.page == 'US Popularity Analysis':
     us_popularity_analysis.run_us_popularity_analysis(state_percentage_analysis_df)  # Call the function from us_popularity_analysis.py
 
-# elif st.session_state.page == 'Dataset':
-#     dataset.run_dataset()
+elif st.session_state.page == 'Dataset':
+    dataset.run_dataset()
 
 # elif st.session_state.page == 'Sentimental Data Analysis':
 #     sentimental_data_analysis.run_sentimental_data_analysis(trump_df, biden_df)  # Call the function from sentimental_data_analysis.py
