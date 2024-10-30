@@ -1,5 +1,5 @@
 pandas
-# gdown
+gdown
 streamlit
 # numpy
 matplotlib

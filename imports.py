@@ -7,7 +7,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 # import pycountry
 # import plost
-# import gdown
+import gdown
 
 from data_loader import *
 
