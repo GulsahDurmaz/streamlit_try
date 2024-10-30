@@ -2,7 +2,7 @@
 from imports import *
 import eda
 import world_popularity_analysis
-# import us_popularity_analysis
+import us_popularity_analysis
 import dataset
 
 # Configure the Streamlit page
@@ -39,6 +39,8 @@ st.sidebar.header('US Presidential Election Dashboard `2020`')
 # biden_hourly_df = pd.read_csv("biden_hourly.csv", encoding='utf-8', lineterminator='\n')
 
 country_percentage_analysis_df = load_data("country_percentage_analysis.csv")
+state_percentage_analysis_df = load_data("state_percentage_analysis.csv")
+state_percentage_analysis_df['state'] = state_percentage_analysis_df['state'].astype(str)
 
 # Initialize page state
 if 'page' not in st.session_state:
@@ -67,14 +69,16 @@ if st.sidebar.button("Dataset"):
 elif st.session_state.page == 'World Popularity Analysis':
     world_popularity_analysis.run_world_popularity_analysis(country_percentage_analysis_df)  # Call the function from world_popularity_analysis.py
 
-# elif st.session_state.page == 'US Popularity Analysis':
-#     us_popularity_analysis.run_us_popularity_analysis(country_percentage_analysis_df)  # Call the function from us_popularity_analysis.py
+elif st.session_state.page == 'US Popularity Analysis':
+    us_popularity_analysis.run_us_popularity_analysis(state_percentage_analysis_df)  # Call the function from us_popularity_analysis.py
+
+# elif st.session_state.page == 'Dataset':
+#     dataset.run_dataset()
 
 # elif st.session_state.page == 'Sentimental Data Analysis':
 #     sentimental_data_analysis.run_sentimental_data_analysis(trump_df, biden_df)  # Call the function from sentimental_data_analysis.py
     
-elif st.session_state.page == 'Dataset':
-    dataset.run_dataset()
+
 
 # Sidebar footer
 st.sidebar.markdown('''

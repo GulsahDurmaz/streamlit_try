@@ -9,16 +9,16 @@ def run_world_popularity_analysis(df):
     # Sort top 10 countries
     df = df.sort_values(by='total_tweet_count', ascending=False)
     # The top 10 countries based on total tweet counts
-    top_countries = df.head(10)
+    top_countries = df.iloc[1:].head(10)
     # Set the position of bars on the x-axis
     bar_width = 0.25
     x = range(len(top_countries))
     # Create a figure for the bar chart
     plt.figure(figsize=(12, 6))
     # Plot Trump tweets
-    plt.bar(x, top_countries['trump_percentage'], width=bar_width, label='Trump Tweets', color='red', align='center')
+    plt.bar(x, top_countries['trump_count'], width=bar_width, label='Trump Tweets', color='red', align='center')
     # Plot Biden tweets
-    plt.bar([p + bar_width for p in x], top_countries['biden_percentage'], width=bar_width, label='Biden Tweets', color='blue', align='center')
+    plt.bar([p + bar_width for p in x], top_countries['biden_count'], width=bar_width, label='Biden Tweets', color='blue', align='center')
     # Plot Total tweets
     plt.bar([p + bar_width*2 for p in x], top_countries['total_tweet_count'], width=bar_width, label='Total Tweets', color='gray', align='center')
     # Adding labels and title
@@ -42,9 +42,6 @@ def run_world_popularity_analysis(df):
     # Calculate percentage for selected country
     trump_percentage = df.loc[df['country'] == selected_country, 'trump_percentage'].values[0]
     biden_percentage = df.loc[df['country'] == selected_country, 'biden_percentage'].values[0]
-    # Calculate global percentage
-    trump_percentage_global = df.loc[df['country'] == 'Global', 'trump_percentage'].values[0]
-    biden_percentage_global = df.loc[df['country'] == 'Global', 'biden_percentage'].values[0]
 
     # Calculate country_tweet_count / global_tweet_count
     country_global_percentage = df.loc[df['country'] == selected_country, 'total_percentage'].values[0]
