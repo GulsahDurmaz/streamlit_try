@@ -41,8 +41,8 @@ st.sidebar.header('US Presidential Election Dashboard `2020`')
 country_percentage_analysis_df = load_data("country_percentage_analysis.csv")
 
 # Initialize page state
-# if 'page' not in st.session_state:
-#     st.session_state.page = 'Exploratory Data Analysis'  # Default page
+if 'page' not in st.session_state:
+    st.session_state.page = 'World Popularity Analysis'  # Default page
 
 # Sidebar buttons for page navigation
 if st.sidebar.button("Exploratory Data Analysis"):
