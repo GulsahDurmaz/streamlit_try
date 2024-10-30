@@ -10,3 +10,8 @@ def load_data(file):
     if 'created_at' in data.columns:
         data['created_at'] = pd.to_datetime(data['created_at'], errors='coerce')
     return data
+
+def load_data_drive(file_id, output_file):
+    url = f'https://drive.google.com/uc?id={file_id}'
+    gdown.download(url, output_file, quiet=False)
+    return pd.read_csv(output_file, encoding='utf-8', lineterminator='\n')

@@ -1,7 +1,10 @@
 # eda.py
 from imports import *
 
-def run_exploratory_data_analysis(trump_df, biden_df, df):
+def run_exploratory_data_analysis(df):
+    trump_df = load_data('trump_hourly.csv')
+    biden_df = load_data('biden_hourly.csv')
+
     st.markdown("## Exploratory Data Analysis")
     st.markdown("""
     The 2020 United States presidential election was held on **November 3, 2020**. The major candidates were incumbent 
@@ -22,17 +25,17 @@ def run_exploratory_data_analysis(trump_df, biden_df, df):
     # Filter data based on the selected view
     if view == "USA_popularity":  # USA View
         selected_country = 'United States'
-        trump_tweet_percentage = df.loc[df['Country'] == selected_country, 'Trump Percentage'].values[0]
-        biden_tweet_percentage = df.loc[df['Country'] == selected_country, 'Biden Percentage'].values[0]
-        trump_tweet_count = df.loc[df['Country'] == selected_country, 'Trump Count'].values[0]
-        biden_tweet_count = df.loc[df['Country'] == selected_country, 'Biden Count'].values[0]
+        trump_tweet_percentage = df.loc[df['country'] == selected_country, 'trump_percentage'].values[0]
+        biden_tweet_percentage = df.loc[df['country'] == selected_country, 'biden_percentage'].values[0]
+        trump_tweet_count = df.loc[df['country'] == selected_country, 'trump_count'].values[0]
+        biden_tweet_count = df.loc[df['country'] == selected_country, 'biden_count'].values[0]
         total_tweet_count = trump_tweet_count + biden_tweet_count
     else:  # Global View
         selected_country = 'Global'
-        trump_tweet_percentage = df.loc[df['Country'] == selected_country, 'Trump Percentage'].values[0]
-        biden_tweet_percentage = df.loc[df['Country'] == selected_country, 'Biden Percentage'].values[0]
-        trump_tweet_count = df.loc[df['Country'] == selected_country, 'Trump Count'].values[0]
-        biden_tweet_count = df.loc[df['Country'] == selected_country, 'Biden Count'].values[0]
+        trump_tweet_percentage = df.loc[df['country'] == selected_country, 'trump_percentage'].values[0]
+        biden_tweet_percentage = df.loc[df['country'] == selected_country, 'biden_percentage'].values[0]
+        trump_tweet_count = df.loc[df['country'] == selected_country, 'trump_count'].values[0]
+        biden_tweet_count = df.loc[df['country'] == selected_country, 'biden_count'].values[0]
         total_tweet_count = trump_tweet_count + biden_tweet_count
 
     # Prepare data for the bar chart
